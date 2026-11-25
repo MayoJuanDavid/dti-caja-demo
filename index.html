@@ -1,0 +1,101 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Comprobante de pago (demostración)</title>
+  <style>
+    :root { color-scheme: light dark; }
+    body {
+      font-family: system-ui, -apple-system, "Segoe UI", Roboto, sans-serif;
+      margin: 0;
+      min-height: 100vh;
+      display: grid;
+      place-items: center;
+      background: #f3f4f6;
+      color: #111827;
+    }
+    main {
+      background: #ffffff;
+      padding: 2rem;
+      border-radius: 12px;
+      box-shadow: 0 10px 25px rgba(0, 0, 0, 0.08);
+      width: min(90vw, 420px);
+    }
+    h1 { font-size: 1.25rem; margin: 0 0 0.25rem; }
+    p.subtitulo { margin: 0 0 1.5rem; color: #6b7280; font-size: 0.9rem; }
+    button {
+      font: inherit;
+      font-size: 1rem;
+      padding: 0.65rem 1.1rem;
+      border: 0;
+      border-radius: 8px;
+      background: #2563eb;
+      color: #ffffff;
+      cursor: pointer;
+    }
+    button:hover { background: #1d4ed8; }
+    button:focus-visible { outline: 3px solid #93c5fd; outline-offset: 2px; }
+    .comprobante {
+      margin-top: 1.5rem;
+      border: 1px solid #e5e7eb;
+      border-radius: 8px;
+      padding: 0.5rem 1.25rem 1rem;
+    }
+    .fila {
+      display: flex;
+      justify-content: space-between;
+      gap: 1rem;
+      padding: 0.5rem 0;
+    }
+    .fila dt { color: #6b7280; }
+    .fila dd { margin: 0; font-weight: 600; font-variant-numeric: tabular-nums; }
+    .nota { margin: 0.75rem 0 0; font-size: 0.8rem; color: #9ca3af; }
+  </style>
+</head>
+<body>
+  <main>
+    <h1>Comprobante de pago</h1>
+    <p class="subtitulo">Demostración con datos ficticios</p>
+
+    <button
+      id="ver-comprobante"
+      data-testid="ver-comprobante"
+      type="button"
+      aria-expanded="false"
+      aria-controls="comprobante">
+      Ver comprobante
+    </button>
+
+    <section
+      id="comprobante"
+      data-testid="comprobante"
+      class="comprobante"
+      aria-label="Detalle del comprobante"
+      hidden>
+      <dl>
+        <div class="fila">
+          <dt>Referencia</dt>
+          <dd id="referencia" data-testid="referencia">REF-2026-000036</dd>
+        </div>
+        <div class="fila">
+          <dt>Importe</dt>
+          <dd id="importe" data-testid="importe">$ 125.000,00</dd>
+        </div>
+      </dl>
+      <p class="nota">Datos ficticios para fines de demostración.</p>
+    </section>
+  </main>
+
+  <script>
+    (function () {
+      var boton = document.getElementById("ver-comprobante");
+      var comprobante = document.getElementById("comprobante");
+      boton.addEventListener("click", function () {
+        comprobante.hidden = false;
+        boton.setAttribute("aria-expanded", "true");
+      });
+    })();
+  </script>
+</body>
+</html>
